@@ -18,5 +18,6 @@ steps:
   inputs:
      dockerVersion: '17.09.0-ce'
 - task: CmdLine@2
+  displayName: "Run Trivy Scan"
   inputs:
-    script: 'trivy image liamgu/azuredevopscontainersdemo:74'
+    script: trivy image liamgu/azuredevopscontainersdemo:74
