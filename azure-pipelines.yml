@@ -9,13 +9,13 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  trivyVersion: 0.9.1
+
 steps:
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
-- task: CmdLine@2
-  displayName: "Run Trivy Scan"
-  inputs:
-   script:
-    trivy image liamgu/azuredevopscontainersdemo:74
+    sudo apt-get install rpm
+    wget https://github.com/aquasecurity/trivy/releases/download/v$(trivyVersion)/trivy_$(trivyVersion)_Linux-64bit.deb
+    sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
+    trivy -v
+  displayName: 'Download and install Trivy'
