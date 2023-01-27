@@ -20,4 +20,7 @@ steps:
 - task: CmdLine@2
   displayName: "Run Trivy Scan"
   inputs:
-    script: trivy image  myrepo/mydockerimage:mytag
+    script:
+    mkdir -p report
+    chmod 777 report 
+     docker run --rm -v $(pwd)/report:/zap/wrk/:rw -t trivy image  myrepo/mydockerimage:mytag
