@@ -25,5 +25,5 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      docker pull  tomcat
-      trivy image tomcat
+      docker pull  liamgu/azuredevopscontainersdemo:74
+      trivy image liamgu/azuredevopscontainersdemo:74
