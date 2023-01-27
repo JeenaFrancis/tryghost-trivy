@@ -24,12 +24,6 @@ steps:
       dockerVersion: '17.09.0-ce'
 - task: CmdLine@2
   inputs:
-    script: 'docker pull liamgu/azuredevopscontainersdemo:74'
-- task: CmdLine@2
-  inputs:
     script: |
-      - task: CmdLine@2
-        displayName: "Run trivy scan"
-        inputs:
-          script: |
-            trivy image liamgu/azuredevopscontainersdemo:74
+      docker pull  tomcat
+      trivy image tomcat
