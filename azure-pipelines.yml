@@ -7,7 +7,7 @@ trigger:
 - master
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 variables:
   trivyVersion: 0.9.1
@@ -19,3 +19,17 @@ steps:
     sudo dpkg -i trivy_$(trivyVersion)_Linux-64bit.deb
     trivy -v
   displayName: 'Download and install Trivy'
+- task: DockerInstaller@0
+  inputs:
+      dockerVersion: '17.09.0-ce'
+- task: CmdLine@2
+  inputs:
+    script: 'docker pull liamgu/azuredevopscontainersdemo:74'
+- task: CmdLine@2
+  inputs:
+    script: |
+      - task: CmdLine@2
+        displayName: "Run trivy scan"
+        inputs:
+          script: |
+            trivy image liamgu/azuredevopscontainersdemo:74
